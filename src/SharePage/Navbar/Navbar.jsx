@@ -2,10 +2,29 @@ import { Link, NavLink } from "react-router-dom";
 import "./navbar.css"
 import { FaUser } from "react-icons/fa";
 import { IoCartOutline, IoSearch } from "react-icons/io5";
+import { useContext } from "react";
+import { AuthContext } from "../../Coponents/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
 
+    console.log(user);
+
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Log Out Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            })
+    }
 
     const navElement = <>
         <NavLink className='text-lg font-bold px-2' to='/'>Home</NavLink>
@@ -17,7 +36,7 @@ const Navbar = () => {
         <div>
             <div className="hidden md:block lg:block">
                 <div className="flex py-2 items-center justify-between bg-base-100 px-2 md:px-5 lg:px-5 ">
-                    <div className="md:navbar-start inline-block  lg:navbar-start col-span-3 md:w-[50%] lg:w-[28%]">
+                    <div className="md:navbar-start inline-block  lg:navbar-start col-span-3 md:w-[28%] lg:w-[28%]">
                         <div >
                             <div className="flex items-center">
                                 <img className="md:w-[60px] " src="https://i.ibb.co/kGGjggj/23095971-1122-ai.png" alt="" />
@@ -25,20 +44,24 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex-initial hidden md:block lg:block">
-                        <div className="flex flex-wrap justify-center my-3 md:gap-x-3 lg:gap-x-5 font-medium">
+                    <div className=" hidden md:block lg:block">
+                        <div className="flex flex-wrap justify-center my-3 md:gap-x-2 lg:gap-x-5 font-medium">
                             {navElement}
                         </div>
                     </div>
-                    <div className=" flex items-center justify-end md:gap-x-2 lg:gap-x-4  ml-0 col-span-5 lg:w-[32%]">
-                        
+                    <div className=" flex items-center justify-end md:gap-x-2 lg:gap-x-4  ml-0 col-span-5 lg:w-[20%]">
+
                         <div className="relative">
                             <IoCartOutline className="text-2xl"></IoCartOutline>
                             <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">1</p>
                         </div>
-                        <div>
-                            {/* <FaUser className="text-xl"></FaUser> */}
-                            <Link to='/login'><button className="bg-[#84a793] ml-3 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Login</button></Link>
+                        <div className="flex justify-center items-center">
+                            {
+                                user ? <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /> : <FaUser className="text-xl"></FaUser>
+                            }
+                            {
+                                user ? <button onClick={handleLogout} className="bg-[#84a793] ml-1 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Log Out</button> : <Link to='/login'><button className="bg-[#84a793] ml-3 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Login</button></Link>
+                            }
                         </div>
                     </div>
 
@@ -58,14 +81,18 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className=" flex items-center justify-end gap-x-4  ml-0 col-span-5 lg:w-[32%]">
-                        <IoSearch className="text-xl"></IoSearch>
+                        
                         <div className="relative">
                             <IoCartOutline className="text-2xl"></IoCartOutline>
                             <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">1</p>
                         </div>
-                        <div>
-                            {/* <FaUser className="text-xl"></FaUser> */}
-                            <Link to='/login'><button className="bg-[#84a793] ml-3 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Login</button></Link>
+                        <div className="flex justify-center items-center">
+                            {
+                                user ? <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /> : <FaUser className="text-xl"></FaUser>
+                            }
+                            {
+                                user ? <button onClick={handleLogout} className="bg-[#84a793] ml-1 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Log Out</button> : <Link to='/login'><button className="bg-[#84a793] ml-3 hover:bg-[#303030] delay-75 transition ease-in-out px-3 py-1 rounded-sm text-white font-medium">Login</button></Link>
+                            }
                         </div>
                     </div>
                     {/* <div className="dropdown">
