@@ -40,7 +40,7 @@ const Login = () => {
         googleLogin()
             .then(res => {
                 const user = { name: res.user.displayName, email: res.user.email }
-                axiosPublic.post(`/add/new/user`, user)
+                // axiosPublic.post(`/add/new/user`, user)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
