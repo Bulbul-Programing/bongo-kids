@@ -6,7 +6,8 @@ import Dashboard from "./Page/Dashboard/Dashboard/Dashboard";
 import Login from "./Page/Login/Login";
 import Register from "./Page/Register/Register";
 import AddProducts from "./Page/Dashboard/AddProduct/AddProducts";
-
+import Shop from "./Page/Shop/Shop";
+import ProductDetails from './Coponents/ProductDetails/ProductDetails'
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
-            }
+            },
+            {
+                path : '/shop',
+                element: <Shop></Shop>
+            },
+            {
+                path: '/productDetails/:id',
+                element: <ProductDetails></ProductDetails>
+            },
         ]
     },
     {
