@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useQuery } from '@tanstack/react-query';
 import moment from 'moment';
 import { AuthContext } from '../../../Coponents/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const AddProducts = () => {
     const [loading, setLoading] = useState(false)
@@ -15,7 +16,7 @@ const AddProducts = () => {
     const imageHosting = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
     const [clothingItem, setClothingItem] = useState(false)
 
-    const { data: allProducts, refetch } = useQuery({
+    const { data: allProducts, refetch, isLoading } = useQuery({
         queryKey: ['getAllProduct'],
         queryFn: async () => {
             const res = await axiosSecure.get('/all/products')
@@ -102,12 +103,47 @@ const AddProducts = () => {
         setFiles([...event.target.files]);
     }
     console.log(allProducts);
-    const handleProductId = (id) => {
 
+    const handleDelete = async (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axiosSecure.delete(`/delete/product/${id}`)
+                    .then(res => {
+                        if (res.status === 200) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Product delete successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            refetch()
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response.data.massage === 'Forbidden') {
+                            logOut()
+                            navigate('/login')
+                        }
+                    })
+            }
+        });
     }
 
-    const handleDelete = (id) => {
-
+    if (isLoading) {
+        return (
+            <div className='flex justify-center my-10'>
+                <span className="loading loading-ring loading-lg "></span>
+            </div>
+        )
     }
 
     return (
@@ -190,11 +226,12 @@ const AddProducts = () => {
                                     <td className="min-w-[220px]">
                                         <div className="">
                                             <p className="font-bold text-sm">{product.productName.length > 15 ? product.productName.slice(0, 20) : product.productName}{product.productName.length > 15 ? '....' : ''}</p>
-                                            {/* <p>{product.size[2].size}</p> */}
+
                                             <div className='flex gap-x-1 my-1'>
                                                 {
-                                                    product?.size?.map(g => <p className='bg-slate-200 text-sm py-1 px-2 rounded-md font-medium'>{g.size}</p>)
+                                                    product?.size?.map((g, index) => <p key={index} className='bg-slate-200 text-sm py-1 px-2 rounded-md font-medium'>{g.size}</p>)
                                                 }
+                                                <h1 className='bg-slate-100 px-2 py-1 rounded-sm font-medium inline-block'>{product?.gender}</h1>
                                             </div>
                                             <p className="bg-slate-200 inline-block text-sm py-1 px-2 rounded-md font-medium">Category : {product?.ProductCategory}</p>
                                         </div>
@@ -208,29 +245,11 @@ const AddProducts = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <h1 className='bg-slate-100 px-2 py-1 rounded-sm font-medium'>{product?.gender}</h1>
+                                        <p className='text-slate-600 my-1'>{product.productDetails.length > 80 ? product.productDetails.slice(0, 80) : product.productDetails}{product.productDetails.length > 80 ? '....' : ''}</p>
+                                        <p className='text-slate-600 font-bold'>Price: {product.discountPrice} / {product.mainPrice}</p>
                                     </td>
                                     <th className="w-[100px]">
                                         <div className="flex justify-center">
-                                            <button className="btn bg-blue-400 mr-1 text-white hover:text-black" onClick={() => handleProductId(product._id)}>Update</button>
-                                            <dialog id="my_modal_6" className="modal modal-bottom sm:modal-middle">
-                                                <div className="modal-box">
-                                                    {/* <div>
-                                                        <h1>Add this product</h1>
-                                                        <div className='my-4'>
-                                                            <button onClick={() => handleProduct('product')} className='btn m-2 text-white bg-blue-400'>Product</button>
-                                                            <button onClick={() => handleProduct('bannerProduct')} className='btn m-2 text-white bg-blue-400'>banner Product</button>
-                                                            <button onClick={() => handleProduct('BSproduct')} className='btn m-2 text-white bg-blue-400'>Best sealing Product</button>
-                                                            <button onClick={() => handleProduct('trendingProduct')} className='btn m-2 text-white bg-blue-400'>Trending Product</button>
-                                                        </div>
-                                                    </div> */}
-                                                    <div className="modal-action">
-                                                        <form method="dialog">
-                                                            <button className="btn">Close</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </dialog>
                                             <button onClick={() => handleDelete(product._id)} className="btn bg-red-500 text-white hover:text-black">Delete</button>
                                         </div>
                                     </th>
