@@ -136,7 +136,7 @@ const ProductDetails = () => {
                                     relatedProduct.map(product =>
                                         <SwiperSlide className="px-2" key={product._id}>
                                             <div onClick={() => handleRelatedProduct(product._id)} className="shadow-2xl p-2 h-[280px] cursor-pointer rounded-lg my-5">
-                                                <div className="shadow-xl border mx-auto rounded-xl">
+                                                <div className=" border mx-auto rounded-xl">
                                                     <img className=" mx-auto rounded-md w-full h-[220px]" src={product.image[0]} alt="" />
                                                 </div>
                                                 <p className=" my-4 text-xl md:text-base lg:text-base font-semibold text-wrap">{product.productName.length > 22 ? product.productName.slice(0, 22) : product.productName}{product.productName.length > 22 ? '...' : ''}</p>
@@ -159,11 +159,11 @@ const ProductDetails = () => {
                                 {
                                     relatedProduct.map(product =>
                                         <SwiperSlide className="px-2" key={product._id}>
-                                            <div onClick={() => handleRelatedProduct(product._id)} className="shadow-xl cursor-pointer p-2 h-[370px] rounded-lg my-5">
-                                                <div className="shadow-xl border my-5 rounded-xl">
+                                            <div onClick={() => handleRelatedProduct(product._id)} className="shadow-xl cursor-pointer p-2 h-[270px] rounded-lg my-5">
+                                                <div className=" border my-2 rounded-xl">
                                                     <img className=" mx-auto rounded-xl w-full h-[200px]" src={product.image[0]} alt="" />
                                                 </div>
-                                                <p className=" my-4 text-sm md:text-base lg:text-base font-semibold text-wrap">{product.productName.length > 55 ? product.productName.slice(0, 55) : product.productName}{product.productName.length > 55 ? '...' : ''}</p>
+                                                <p className=" my-4 text-sm md:text-base lg:text-base font-semibold text-wrap">{product.productName.length > 20 ? product.productName.slice(0, 20) : product.productName}{product.productName.length > 20 ? '...' : ''}</p>
                                             </div>
                                         </SwiperSlide>
                                     )
@@ -184,10 +184,10 @@ const ProductDetails = () => {
                                     relatedProduct.map(product =>
                                         <SwiperSlide className="px-2" key={product._id}>
                                             <div className="shadow-xl cursor-pointer p-2 rounded-lg my-5" onClick={() => handleRelatedProduct(product._id)}>
-                                                <div className="shadow-xl border my-5 rounded-xl">
-                                                    <img className=" mx-auto rounded-xl w-full h-[150px]" src={product.image[0]} alt="" />
+                                                <div className=" border my-2 rounded-xl">
+                                                    <img className=" mx-auto rounded-xl w-full h-[170px]" src={product.image[0]} alt="" />
                                                 </div>
-                                                <p className=" my-4 text-sm md:text-base lg:text-base font-semibold text-wrap">{product.productName.length > 55 ? product.productName.slice(0, 55) : product.productName}{product.productName.length > 55 ? '...' : ''}</p>
+                                                <p className=" my-2 text-sm md:text-base lg:text-base font-semibold text-wrap">{product.productName.length > 18 ? product.productName.slice(0, 18) : product.productName}{product.productName.length > 18 ? '...' : ''}</p>
                                             </div>
                                         </SwiperSlide>
                                     )
