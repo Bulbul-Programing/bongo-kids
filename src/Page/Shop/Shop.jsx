@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Coponents/AuthProvider/AuthProvider";
 
 const Shop = () => {
     const axiosPublic = useAxiosPublic()
@@ -15,6 +16,7 @@ const Shop = () => {
     const [allProduct, setAllProduct] = useState([])
     const [maxValue, setMaxValue] = useState(0)
     const [minValue, setMinValue] = useState(0)
+    const {cartItem} = useContext(AuthContext)
 
     useEffect(() => {
         const getProduct = async () => {
@@ -65,6 +67,25 @@ const Shop = () => {
     }
     const handleMaxValue = (e) => {
         setMaxValue(e.target.value);
+    }
+
+    const handleCartItem = (product) => {
+        
+        cartItem(product._id)
+        
+        // const storedArrayString = localStorage.getItem('CartItemId')
+        // let myArray = JSON.parse(storedArrayString) || []
+        // const newItem = product._id
+        // const existingItem = myArray.find(g => g === newItem)
+
+        // if (existingItem) {
+        //     return
+        // }
+        // else {
+        //     myArray.push(newItem)
+        //     const updateArray = JSON.stringify(myArray)
+        //     localStorage.setItem('CartItemId', updateArray)
+        // }
     }
 
     if (isLoading) {
@@ -148,7 +169,8 @@ const Shop = () => {
                                                 <span className="text-xs md:text-sm lg:text-lg font-semibold ml-2">{Math.round((product?.mainPrice - product?.discountPrice) * 100 / product?.mainPrice)} %off</span>
                                             </div>
                                             <div className="flex justify-center">
-                                                <Link className=" w-[90%] mr-6 mt-2 rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2 text-center" to={`/productDetails/${product?._id}`}><button className="text-center">Bye Now</button></Link>
+                                                <Link className="mr-2 mt-2 px-4 md:px-2 lg:px-2 rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2 text-center" to={`/productDetails/${product?._id}`}><button className="text-center">Bye Now</button></Link>
+                                                <button onClick={() => handleCartItem(product)} className="mr-6 mt-2 px-4 md:px-2 lg:px-2 rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2 text-center">Add to Cart</button>
                                             </div>
                                         </div>
                                     </div>

@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     const auth = getAuth(app);
     const axiosPublic = useAxiosPublic()
+    const [totalCartItem, setTotalCartItem] = useState([])
+    const [cartProduct, setCartProduct] = useState([])
 
     const emailRegister = (email, password) => {
         setLoading(true)
@@ -56,6 +58,32 @@ const AuthProvider = ({ children }) => {
         })
     }, [user])
 
+    const cartItem = (id) => {
+        const storedArrayString = localStorage.getItem('CartItemId')
+        let myArray = JSON.parse(storedArrayString) || []
+        const newItem = id
+        const existingItem = myArray.find(g => g === newItem)
+
+        if (existingItem) {
+            return
+        }
+        else {
+            myArray.push(newItem)
+            const updateArray = JSON.stringify(myArray)
+            localStorage.setItem('CartItemId', updateArray)
+        }
+        const cartItemString = localStorage.getItem('CartItemId')
+        let cartItems = JSON.parse(cartItemString)
+        setCartProduct(cartItems)
+
+    }
+
+    useEffect(() => {
+        const cartItemString = localStorage.getItem('CartItemId')
+        let cartItems = JSON.parse(cartItemString)
+        setCartProduct(cartItems)
+    }, [])
+
     const authInfo = {
         emailRegister,
         emailLogin,
@@ -65,7 +93,11 @@ const AuthProvider = ({ children }) => {
         loading,
         resetPassword,
         logOut,
-        googleLogin
+        googleLogin,
+        setTotalCartItem,
+        totalCartItem,
+        cartItem,
+        cartProduct
     }
 
     return (

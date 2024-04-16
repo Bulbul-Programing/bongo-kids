@@ -65,7 +65,7 @@ const SelectedProduct = () => {
                                                 <h4><span className='text-xl text-[#84a793] font-bold mr-3'>৳ {product.discountPrice}</span><span className='text-slate-500 font-semibold line-through'>৳ {product.mainPrice}</span></h4>
                                             </div>
                                             <div className='m-3 absolute bottom-0 w-[90%] text-center '>
-                                                <button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Add to Cart</button>
+                                                <Link to={`/productDetails/${product?._id}`}><button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Bye Now</button></Link>
                                             </div>
                                         </div>)
                                 }
@@ -89,7 +89,7 @@ const SelectedProduct = () => {
                                                 <h4><span className='text-xl text-[#84a793] font-bold mr-3'>৳ {product.discountPrice}</span><span className='text-slate-500 font-semibold line-through'>৳ {product.mainPrice}</span></h4>
                                             </div>
                                             <div className='m-3 absolute bottom-0 w-[90%] text-center '>
-                                                <button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Add to Cart</button>
+                                                <Link to={`/productDetails/${product?._id}`}><button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Bye Now</button></Link>
                                             </div>
                                         </div>)
                                 }
@@ -113,7 +113,7 @@ const SelectedProduct = () => {
                                                 <h4><span className='text-xl text-[#84a793] font-bold mr-3'>৳ {product.discountPrice}</span><span className='text-slate-500 font-semibold line-through'>৳ {product.mainPrice}</span></h4>
                                             </div>
                                             <div className='m-3 absolute bottom-0 w-[90%] text-center '>
-                                                <button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Add to Cart</button>
+                                                <Link to={`/productDetails/${product?._id}`}><button className='w-full rounded-md bg-[#84a793] hover:bg-[#303030] delay-75 transition ease-in-out text-white font-bold cursor-pointer py-2'>Bye Now</button></Link>
                                             </div>
                                         </div>)
                                 }

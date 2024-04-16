@@ -8,6 +8,7 @@ import Register from "./Page/Register/Register";
 import AddProducts from "./Page/Dashboard/AddProduct/AddProducts";
 import Shop from "./Page/Shop/Shop";
 import ProductDetails from './Coponents/ProductDetails/ProductDetails'
+import CheckOut from "./Coponents/CheckOut/CheckOut";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path: '/productDetails/:id',
                 element: <ProductDetails></ProductDetails>
             },
+            {
+                path : '/checkout',
+                element: <CheckOut></CheckOut>
+            }
         ]
     },
     {

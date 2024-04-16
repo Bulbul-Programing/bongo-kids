@@ -8,32 +8,19 @@ import Swal from "sweetalert2";
 
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut, cartProduct } = useContext(AuthContext)
     const [hideNavbar, setHideNavbar] = useState(false);
     const [scrollValue, setScrollValue] = useState(0)
-    
-    // useEffect(() => {
-    //     let prevScroll = window.pageYOffset;
-    //     window.onscroll = () => {
-    //         let currentScrollPos = window.pageYOffset;
-    //         if (prevScroll > currentScrollPos) {
-    //             setHideNavbar(false);
-    //         } else {
-    //             setHideNavbar(true);
-    //         }
-    //         prevScroll = currentScrollPos;
-    //     };
-    // }, []);
- 
-  window.addEventListener('scroll', function () {
-    if(scrollValue < this.scrollY){
-        setHideNavbar(true)
-    }
-    else{
-        setHideNavbar(false)
-    }
-    setScrollValue(this.scrollY)
-  })
+
+    window.addEventListener('scroll', function () {
+        if (scrollValue < this.scrollY) {
+            setHideNavbar(true)
+        }
+        else {
+            setHideNavbar(false)
+        }
+        setScrollValue(this.scrollY)
+    })
 
     const handleLogout = () => {
         logOut()
@@ -73,10 +60,13 @@ const Navbar = () => {
                     </div>
                     <div className=" flex items-center justify-end md:gap-x-2 lg:gap-x-4  ml-0 col-span-5 lg:w-[20%]">
 
-                        <div className="relative">
-                            <IoCartOutline className="text-2xl"></IoCartOutline>
-                            <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">1</p>
-                        </div>
+                        <Link to='/checkout' className="cursor-pointer">
+                            <div className="relative">
+                                <IoCartOutline className="text-2xl"></IoCartOutline>
+                                <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">{cartProduct ? cartProduct.length : 0 }</p>
+                            </div>
+                        </Link>
+
                         <div className="flex justify-center items-center">
                             {
                                 user ? <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /> : <FaUser className="text-xl"></FaUser>
@@ -103,10 +93,12 @@ const Navbar = () => {
                     </div>
                     <div className=" flex items-center justify-end gap-x-4  ml-0 col-span-5 lg:w-[32%]">
 
-                        <div className="relative">
-                            <IoCartOutline className="text-2xl"></IoCartOutline>
-                            <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">1</p>
-                        </div>
+                        <Link to='/checkout' className="cursor-pointer">
+                            <div className="relative">
+                                <IoCartOutline className="text-2xl"></IoCartOutline>
+                                <p className="absolute text-sm font-semibold -top-4 -right-3 text-white w-[25px] h-[25px] text-center p-[2px] rounded-full bg-[#84a793] ">{cartProduct ? cartProduct.length : 0 }</p>
+                            </div>
+                        </Link>
                         <div className="flex justify-center items-center">
                             {
                                 user ? <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="" /> : <FaUser className="text-xl"></FaUser>
