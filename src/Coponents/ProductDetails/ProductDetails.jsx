@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { ImageWithZoom, Slide, Slider } from "pure-react-carousel";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa6";
@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const ProductDetails = () => {
@@ -21,6 +22,7 @@ const ProductDetails = () => {
     const [productId, setProductId] = useState(id)
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(false)
+    const { cartItem } = useContext(AuthContext)
 
     useEffect(() => {
         const g = async () => {
@@ -59,6 +61,10 @@ const ProductDetails = () => {
 
     const handleRelatedProduct = (id) => {
         setProductId(id)
+    }
+
+    const handleCartItem = (product) => {
+        cartItem(product._id)
     }
 
     if (loading) {
@@ -109,7 +115,8 @@ const ProductDetails = () => {
                                 </div>
                             </div>
                             <div className="flex justify-start">
-                                <Link state={quantity} to={`/productCheckout/${product._id}`}><button className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md">Bye Now</button></Link>
+                                <Link state={`${product._id}`} to={`/checkout`}><button className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md">Bye Now</button></Link>
+                                <button onClick={() => handleCartItem(product)} className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md ml-3">Add to Cart</button>
                             </div>
                         </div>
                     </div>

@@ -78,6 +78,14 @@ const AuthProvider = ({ children }) => {
 
     }
 
+    const deleteCartItem = (id) => {
+        const storedArrayString = localStorage.getItem('CartItemId')
+        let myArray = JSON.parse(storedArrayString)
+        const updateArray = []
+        myArray.find(item => item !== id && updateArray.push(item))
+        localStorage.setItem('CartItemId', updateArray)
+    }
+
     useEffect(() => {
         const cartItemString = localStorage.getItem('CartItemId')
         let cartItems = JSON.parse(cartItemString)
@@ -97,7 +105,8 @@ const AuthProvider = ({ children }) => {
         setTotalCartItem,
         totalCartItem,
         cartItem,
-        cartProduct
+        cartProduct,
+        deleteCartItem
     }
 
     return (

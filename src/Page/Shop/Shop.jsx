@@ -70,26 +70,11 @@ const Shop = () => {
     }
 
     const handleCartItem = (product) => {
-        
         cartItem(product._id)
-        
-        // const storedArrayString = localStorage.getItem('CartItemId')
-        // let myArray = JSON.parse(storedArrayString) || []
-        // const newItem = product._id
-        // const existingItem = myArray.find(g => g === newItem)
-
-        // if (existingItem) {
-        //     return
-        // }
-        // else {
-        //     myArray.push(newItem)
-        //     const updateArray = JSON.stringify(myArray)
-        //     localStorage.setItem('CartItemId', updateArray)
-        // }
     }
 
     if (isLoading) {
-        return <div className="flex justify-center my-20"><span className="loading loading-dots loading-lg"></span></div>
+        return <div className="flex justify-center my-20"><span className="loading loading-ring loading-lg"></span></div>
     }
 
     return (
