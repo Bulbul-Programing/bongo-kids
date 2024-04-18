@@ -29,7 +29,6 @@ const SelectedProduct = () => {
         }
     })
 
-    console.log(allProducts);
 
     if (isLoading || boyLoading || girlLoading) {
         return (

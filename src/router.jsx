@@ -11,6 +11,8 @@ import ProductDetails from './Coponents/ProductDetails/ProductDetails'
 import CheckOut from "./Coponents/CheckOut/CheckOut";
 import Orders from "./Page/Dashboard/Orders/Orders";
 import DownloadOrder from "./Page/Dashboard/Orders/DownloadOrder";
+import AddAdmin from "./Page/Dashboard/AddAdmin/AddAdmin";
+import PrivetRoute from './PrivetRoute/PrivetRoute'
 
 const router = createBrowserRouter([
     {
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element:<PrivetRoute><Dashboard></Dashboard></PrivetRoute> ,
         children: [
             {
                 path: '/dashboard/home',
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/download/order/:orderId',
                 element: <DownloadOrder></DownloadOrder>
+            },
+            {
+                path : '/dashboard/admin',
+                element : <AddAdmin></AddAdmin>
             }
         ]
 

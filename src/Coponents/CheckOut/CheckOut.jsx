@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useQuery } from "@tanstack/react-query";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useState } from "react";
 import moment from "moment";
@@ -14,30 +14,21 @@ const CheckOut = () => {
     const { cartProduct, deleteCartItem } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
     const location = useLocation()
-    const [productId, setProductId] = useState(location.state)
+    // const [productId, setProductId] = useState(location.state)
     const [shippingLocation, setShippingLocation] = useState('insideDhaka')
     const navigate = useNavigate()
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
-    
+
     useEffect(() => {
         setLoading(true)
         const getCartProduct = async () => {
-            if (cartProduct) {
-                await axiosPublic.post('/get/cartItem/products', cartProduct)
-                    .then(res => {
-                        setProducts(res.data)
-                        setLoading(false)
-                    })
-            }
-            if (productId) {
-                await axiosPublic.get(`/product/details/${productId}`)
-                    .then(res => {
-                        console.log(res.data);
-                        setLoading(false)
-                    })
-            }
-            setProducts([])
+            await axiosPublic.post('/get/cartItem/products', cartProduct)
+                .then(res => {
+                    console.log(res);
+                    setProducts(res.data)
+                    setLoading(false)
+                })
             setLoading(false)
         }
         getCartProduct()
@@ -114,7 +105,7 @@ const CheckOut = () => {
     }
 
     if (loading) {
-        return <h1>Loading....</h1>
+        return <div className="flex justify-center my-20"><span className="loading loading-ring loading-lg"></span></div>
     }
 
 
@@ -135,7 +126,9 @@ const CheckOut = () => {
                             <option value="insideDhaka">ঢাকার ভেতরে</option>
                             <option value="outsideDhaka">ঢাকার বাহিরে</option>
                         </select>
-                        <input type="submit" value='Confirm Order' className='btn bg-[#84a793] text-white hover:bg-[#518065] hover:text-white border border-[#999d9a] w-full text-center mt-3' />
+                        {
+                            products.length === 0 ? <Link to='/shop'><button className='btn bg-[#84a793] text-white hover:bg-[#518065] hover:text-white border border-[#999d9a] w-full text-center mt-3'>Please select Product first</button></Link>: <input type="submit" value='Confirm Order' className='btn bg-[#84a793] text-white hover:bg-[#518065] hover:text-white border border-[#999d9a] w-full text-center mt-3' />
+                        }
                     </form>
                 </div>
 
@@ -148,11 +141,11 @@ const CheckOut = () => {
                         </span>
                         <span className='flex justify-between border-b border-black pb-2'>
                             <p className='text-lg font-semibold'>Shipping Cost : </p>
-                            <p className='text-lg font-semibold'>{shippingLocation === 'insideDhaka' ? 70 : 120}</p>
+                            <p className='text-lg font-semibold'>{products.length === 0 ? 0 : shippingLocation === 'insideDhaka' ? 70 : 120}</p>
                         </span>
                         <span className='flex justify-between pt-2'>
                             <p className='text-lg font-semibold'>Grand Total : </p>
-                            <p className='text-lg font-semibold text-white px-4 rounded-md bg-[#84a793]'>{(products?.reduce((sum, product) => sum + ((product.quantity ? product.quantity : 1) * (product.discountPrice)), 0)) + (shippingLocation === 'insideDhaka' ? 70 : 120)}</p>
+                            <p className='text-lg font-semibold text-white px-4 rounded-md bg-[#84a793]'>{products.length === 0 ? 0 : (products?.reduce((sum, product) => sum + ((product.quantity ? product.quantity : 1) * (product.discountPrice)), 0)) + (shippingLocation === 'insideDhaka' ? 70 : 120)}</p>
                         </span>
                     </div>
                     <div>
@@ -166,7 +159,7 @@ const CheckOut = () => {
                                                 <p className=' md:text-base lg:text-xl hidden lg:block md:hidden md:mb-0 lg:mb-2 font-bold'>{product.productName.length > 37 ? product.productName.slice(0, 37) : product.productName}{product.productName.length > 37 ? '....' : ''}</p>
                                                 <p className=' md:text-base lg:text-xl md:mb-0 lg:mb-2 hidden md:block lg:hidden  font-bold'>{product.productName.length > 30 ? product.productName.slice(0, 28) : product.productName}{product.productName.length > 30 ? '....' : ''}</p>
                                                 <p className=' md:text-base lg:text-xl md:mb-0 lg:mb-2 block md:hidden lg:hidden  font-bold'>{product.productName.length > 25 ? product.productName.slice(0, 25) : product.productName}{product.productName.length > 30 ? '....' : ''}</p>
-                                                <ImCross onClick={handleCartItemDelete} className='mr-3 cursor-pointer text-red-500'></ImCross>
+                                                <ImCross onClick={() => handleCartItemDelete(product._id)} className='mr-3 cursor-pointer text-red-500'></ImCross>
                                             </div>
                                             <div className='flex flex-col md:flex-row lg:flex-row justify-between'>
                                                 <div className="flex items-center gap-x-2">

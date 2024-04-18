@@ -68,7 +68,7 @@ const ProductDetails = () => {
     }
 
     if (loading) {
-        return <div className="flex justify-center my-20"><span className="loading loading-dots loading-lg"></span></div>
+        return <div className="flex justify-center my-20"><span className="loading loading-ring loading-lg"></span></div>
     }
 
     return (
@@ -115,7 +115,7 @@ const ProductDetails = () => {
                                 </div>
                             </div>
                             <div className="flex justify-start">
-                                <Link state={`${product._id}`} to={`/checkout`}><button className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md">Bye Now</button></Link>
+                                <Link onClick={() => handleCartItem(product)} to={`/checkout`}><button className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md">Bye Now</button></Link>
                                 <button onClick={() => handleCartItem(product)} className="px-5 py-3 my-2 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md ml-3">Add to Cart</button>
                             </div>
                         </div>

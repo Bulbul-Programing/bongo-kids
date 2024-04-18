@@ -59,8 +59,9 @@ const AuthProvider = ({ children }) => {
     }, [user])
 
     const cartItem = (id) => {
-        const storedArrayString = localStorage.getItem('CartItemId')
+        const storedArrayString = window.localStorage.getItem('CartItemId')
         let myArray = JSON.parse(storedArrayString) || []
+        console.log(myArray);
         const newItem = id
         const existingItem = myArray.find(g => g === newItem)
 
@@ -70,26 +71,31 @@ const AuthProvider = ({ children }) => {
         else {
             myArray.push(newItem)
             const updateArray = JSON.stringify(myArray)
-            localStorage.setItem('CartItemId', updateArray)
+            window.localStorage.setItem('CartItemId', updateArray)
         }
-        const cartItemString = localStorage.getItem('CartItemId')
+        const cartItemString = window.localStorage.getItem('CartItemId')
         let cartItems = JSON.parse(cartItemString)
         setCartProduct(cartItems)
 
     }
 
     const deleteCartItem = (id) => {
-        const storedArrayString = localStorage.getItem('CartItemId')
+        const storedArrayString = window.localStorage.getItem('CartItemId')
         let myArray = JSON.parse(storedArrayString)
-        const updateArray = []
-        myArray.find(item => item !== id && updateArray.push(item))
-        localStorage.setItem('CartItemId', updateArray)
+        // console.log(myArray);
+        let updateArray = []
+        myArray.map(item => item !== id && updateArray.push(item))
+        let updateCartItem = JSON.stringify(updateArray)
+        localStorage.setItem('CartItemId', updateCartItem)
+        setCartProduct(updateArray)
     }
 
     useEffect(() => {
-        const cartItemString = localStorage.getItem('CartItemId')
-        let cartItems = JSON.parse(cartItemString)
-        setCartProduct(cartItems)
+        const cartItemString = window.localStorage.getItem('CartItemId')
+        if (cartItemString) {
+            let cartItems = JSON.parse(cartItemString)
+            setCartProduct(cartItems)
+        }
     }, [])
 
     const authInfo = {

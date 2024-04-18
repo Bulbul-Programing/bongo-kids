@@ -11,7 +11,7 @@ const Banner = () => {
                 <Link to='/shop'><button className='px-5 py-3 bg-[#84a793] mb-8 hover:bg-[#303030] delay-75 transition ease-in-out text-white font-medium rounded-md'>Shop Now</button></Link>
             </div>
             <div className='w-full md:w-1/2 lg:w-1/2'>
-                <img className='w-full md:w-full lg:w-[80%]' src="https://i.ibb.co/kq0dF8Q/banner-1-ad01da57-7fcd-4879-a0f4-e2afa333d7c8-2048x660-crop-top.png" alt="" />
+                <img className='w-full md:w-full lg:w-[80%]' src="https://i.ibb.co/TtK4gQm/banner-1-ad01da57-7fcd-4879-a0f4-e2afa333d7c8-2048x660-crop-top.png" alt="" />
             </div>
         </div>
     );

@@ -5,12 +5,21 @@ import { IoCartOutline, IoSearch } from "react-icons/io5";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Coponents/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const Navbar = () => {
     const { user, logOut, cartProduct } = useContext(AuthContext)
     const [hideNavbar, setHideNavbar] = useState(false);
     const [scrollValue, setScrollValue] = useState(0)
+    const axiosPublic = useAxiosPublic()
+    const [admin , setAdmin] = useState({})
+
+    useEffect(()=>{
+        axiosPublic.get(`/get/isAdmin/${user?.email}`)
+        .then(res => setAdmin(res.data))
+    }, [user])
+
 
     window.addEventListener('scroll', function () {
         if (scrollValue < this.scrollY) {
@@ -38,7 +47,9 @@ const Navbar = () => {
     const navElement = <>
         <NavLink className='text-lg font-bold px-2' to='/'>Home</NavLink>
         <NavLink className='text-lg font-bold px-2' to='/shop'>Shop</NavLink>
-        <NavLink className='text-lg font-bold px-2' to='/dashboard/home'>Dashboard</NavLink>
+        {
+            admin && <NavLink className='text-lg font-bold px-2' to='/dashboard/home'>Dashboard</NavLink>
+        }
         <NavLink className='text-lg font-bold px-2' to='/contact'>Contact</NavLink>
     </>
     return (
@@ -48,7 +59,7 @@ const Navbar = () => {
                     <div className="md:navbar-start inline-block  lg:navbar-start col-span-3 md:w-[28%] lg:w-[28%]">
                         <div >
                             <div className="flex items-center">
-                                <img className="md:w-[60px] " src="https://i.ibb.co/kGGjggj/23095971-1122-ai.png" alt="" />
+                                <img className="md:w-[60px] " src="https://i.ibb.co/tJ909XV/23095971-1122-ai.png" alt="" />
                                 <h1 className="text-xl md:text-2xl lg:text-3xl  font-bold"><span className="text-[#84a793]">Bongo</span> Kids</h1>
                             </div>
                         </div>
@@ -86,7 +97,7 @@ const Navbar = () => {
                     <div>
                         <div >
                             <div className="flex items-center">
-                                <img className="w-[80px] " src="https://i.ibb.co/kGGjggj/23095971-1122-ai.png" alt="" />
+                                <img className="w-[80px] " src="https://i.ibb.co/tJ909XV/23095971-1122-ai.png" alt="" />
                                 <h1 className="text-xl md:text-3xl lg:text-3xl font-bold"><span className="text-[#84a793]">Bongo</span> Kids</h1>
                             </div>
                         </div>

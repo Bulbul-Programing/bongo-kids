@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff'
     },
     section: {
-        margin: 10,
         padding: 10,
         flexGrow: 1,
         marginBottom: 10,
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 12,
-        marginBottom: 20,
         borderBottom: '1px solid #000',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -75,10 +73,6 @@ const styles = StyleSheet.create({
     },
     itemName: {
         flexGrow: 1,
-    },
-    total: {
-        marginTop: 20,
-        textAlign: 'right',
     },
     footer: {
         position: 'absolute',
@@ -149,7 +143,8 @@ const styles = StyleSheet.create({
     total: {
         marginBottom: 5,
         fontSize: 16,
-        color : '# 84a793'
+        color : '#84a793',
+        textAlign: 'right',
     },
     watermark: {
         opacity: 0.1, // Adjust opacity to make the watermark less prominent
