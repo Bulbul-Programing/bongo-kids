@@ -60,7 +60,7 @@ const SelectedProduct = () => {
                                             </div>
                                             <div className='px-4 pt-4'>
                                                 <h3 className='text-xl font-bold'>{product.productName.length > 20 ? product.productName.slice(0, 22) : product.productName}{product.productName.length > 15 ? '....' : ''}</h3>
-                                                <p className='my-2 text-slate-500'>{product.productDetails.length > 80 ? product.productDetails.slice(0, 80) : product.productDetails}{product.productDetails.length > 80 ? '....' : ''}</p>
+                                                <p className='my-2 text-slate-500'>{product.productDetails.length > 50 ? product.productDetails.slice(0, 50) : product.productDetails}{product.productDetails.length > 50 ? '....' : ''}</p>
                                                 <h4><span className='text-xl text-[#84a793] font-bold mr-3'>৳ {product.discountPrice}</span><span className='text-slate-500 font-semibold line-through'>৳ {product.mainPrice}</span></h4>
                                             </div>
                                             <div className='m-3 absolute bottom-0 w-[90%] text-center '>

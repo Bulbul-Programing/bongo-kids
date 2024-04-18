@@ -13,6 +13,7 @@ import Orders from "./Page/Dashboard/Orders/Orders";
 import DownloadOrder from "./Page/Dashboard/Orders/DownloadOrder";
 import AddAdmin from "./Page/Dashboard/AddAdmin/AddAdmin";
 import PrivetRoute from './PrivetRoute/PrivetRoute'
+import Contact from "./Coponents/Contact/Contact";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path : '/checkout',
                 element: <CheckOut></CheckOut>
+            },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
             }
         ]
     },
