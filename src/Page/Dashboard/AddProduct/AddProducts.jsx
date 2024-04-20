@@ -169,6 +169,7 @@ const AddProducts = () => {
                             </select>
 
                             <select name="genderSelect" className={`${clothingItem === true ? 'block' : 'hidden'} px-2 w-full mb-6 outline-none  border-2 focus:border-blue-400 rounded-lg text-slate-500 file-input file-input-bordered `}>
+                                <option className="rounded-lg text-slate-500 p-4" value='Default'>Select Gender</option>
                                 <option className="rounded-lg text-slate-500 p-4" value='Boy'>Boy</option>
                                 <option className="rounded-lg text-slate-500 p-2" value='Girl'>Girl</option>
                             </select>

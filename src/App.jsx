@@ -13,9 +13,11 @@ function App() {
       {
         user?.emailVerified === false && <p className='text-center font-medium py-2 bg-[#84a793] bg-opacity-80 sticky text-white'>Please Verify Your Email. Please check you Email.</p>
       }
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+      <div className='max-w-7xl mx-auto'>
+        <Navbar></Navbar>
+        <Outlet></Outlet>
+        <Footer></Footer>
+      </div>
     </>
   )
 }
