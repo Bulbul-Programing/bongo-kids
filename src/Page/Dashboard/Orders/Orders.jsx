@@ -55,14 +55,10 @@ const Orders = () => {
         }
     })
 
-    console.log(orders);
-
     const handleStatus = async (id, status) => {
-        console.log(id, status);
-        console.log(id);
+        
         await axiosSecure.put(`/update/order/status/${id}`, { status })
             .then(res => {
-                console.log(res);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                 }

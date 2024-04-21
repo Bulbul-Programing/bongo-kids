@@ -102,7 +102,6 @@ const AddProducts = () => {
     const handleFileChange = (event) => {
         setFiles([...event.target.files]);
     }
-    console.log(allProducts);
 
     const handleDelete = async (id) => {
         Swal.fire({

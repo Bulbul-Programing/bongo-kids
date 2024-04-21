@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     bengaliText: {
-        fontFamily: 'NotoSansBengali', // Use the registered Bengali font
+        fontFamily: 'NotoSansBengali', 
         fontSize: 12,
         textAlign: 'left',
         marginBottom: 3
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         borderBottom: '1px solid #000'
     },
     tableCell: {
+        fontFamily: 'NotoSansBengali',
         flex: 1,
         padding: 5,
         fontSize: 12,
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
         padding: 2
     },
     tableCellName: {
+        fontFamily: 'NotoSansBengali',
         width: 260,
         borderRight: '1px solid #000',
         borderLeft: '1px solid #000',
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(239, 246 ,255, 0.3)'
     },
     thanksText: {
-        fontFamily: 'NotoSansBengali', // Use the registered Bengali font
+        fontFamily: 'NotoSansBengali', 
         fontSize: 12,
         textAlign: 'left',
     },
@@ -195,7 +197,6 @@ const styles = StyleSheet.create({
 
 const PDFComponent = ({ orderData }) => {
     const [thanks, setThanks] = useState('আপনার অর্ডার শুধুমাত্র একটি লেনদেন নয়; এটা আপনি আমাদের প্রতি আস্থার প্রতিফলন। আপনার যাত্রার অংশ হতে পেরে আমরা আনন্দিত।')
-    console.log(orderData);
     return (
         <Document>
             <Page size="A4" style={styles.page}>

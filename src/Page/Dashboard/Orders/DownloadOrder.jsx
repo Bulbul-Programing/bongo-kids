@@ -17,7 +17,6 @@ const DownloadOrder = () => {
         getOrder()
     }, [id])
 
-    // console.log(orderInfo);
     return (
         <div>
             <div className="bg-blue-400 text-center m-5 text-white inline-block p-3 rounded-md hover:bg-blue-600">

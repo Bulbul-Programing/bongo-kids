@@ -25,7 +25,6 @@ const CheckOut = () => {
         const getCartProduct = async () => {
             await axiosPublic.post('/get/cartItem/products', cartProduct)
                 .then(res => {
-                    console.log(res);
                     setProducts(res.data)
                     setLoading(false)
                 })
@@ -33,7 +32,6 @@ const CheckOut = () => {
         }
         getCartProduct()
     }, [cartProduct])
-    console.log(products);
     const handleQuantity = (id, value, status = 'default') => {
         if (status === 'plus') {
             setProducts(pre =>
@@ -57,10 +55,6 @@ const CheckOut = () => {
                 )
             )
         }
-
-        // const calculateTotalPrice = products?.reduce((sum, product) => sum + ((product.quantity ? product.quantity : 1) * (product.discountPrice)), 0)
-        // setTotalPrice(calculateTotalPrice)
-        // console.log(calculateTotalPrice);
     }
 
     const handleOrderSubmit = async (e) => {

@@ -61,7 +61,6 @@ const AuthProvider = ({ children }) => {
     const cartItem = (id) => {
         const storedArrayString = window.localStorage.getItem('CartItemId')
         let myArray = JSON.parse(storedArrayString) || []
-        console.log(myArray);
         const newItem = id
         const existingItem = myArray.find(g => g === newItem)
 
@@ -82,7 +81,6 @@ const AuthProvider = ({ children }) => {
     const deleteCartItem = (id) => {
         const storedArrayString = window.localStorage.getItem('CartItemId')
         let myArray = JSON.parse(storedArrayString)
-        // console.log(myArray);
         let updateArray = []
         myArray.map(item => item !== id && updateArray.push(item))
         let updateCartItem = JSON.stringify(updateArray)

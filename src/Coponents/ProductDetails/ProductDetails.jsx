@@ -35,7 +35,6 @@ const ProductDetails = () => {
         }
         g()
     }, [id, productId])
-    console.log(product);
     const handleImageIndex = (index) => {
         setSelectImg(index)
     }

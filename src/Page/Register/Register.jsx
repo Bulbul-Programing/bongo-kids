@@ -80,7 +80,6 @@ const Register = () => {
                 })
                 .catch(error =>
                    {
-                    console.log(error);
                     setRegisterLoading(false)
                     setError('This email have already register.')
                    }
