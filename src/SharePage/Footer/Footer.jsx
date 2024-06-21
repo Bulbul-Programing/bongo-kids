@@ -3,8 +3,8 @@ const Footer = () => {
     return (
         <footer className="footer p-10 bg-base-200 text-base-content">
             <aside>
-                <img className="w-[150px] mb-5" src="https://i.ibb.co/tJ909XV/23095971-1122-ai.png" alt="" />
-                <h1 className="text-3xl font-bold mt-[-50px]"><span className="text-[#84a793]">Bongo</span> Kids</h1>
+                <img className="w-[150px] mb-5" src="https://i.ibb.co/2djgHS6/7114901-3536451-ai.png" alt="" />
+                <h1 className="text-3xl font-bold mt-[-50px]"><span className="text-[#84a793]">Meghna</span> Mall</h1>
             </aside>
             <nav>
                 <header className="footer-title">Services</header>

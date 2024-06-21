@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://bongo-kids-server.vercel.app'
+    baseURL: 'https://meghna-mall-new.vercel.app'
     // baseURL: 'http://localhost:5000'    
 })
 

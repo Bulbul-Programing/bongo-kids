@@ -59,8 +59,8 @@ const Navbar = () => {
                     <div className="md:navbar-start inline-block  lg:navbar-start col-span-3 md:w-[28%] lg:w-[28%]">
                         <div >
                             <div className="flex items-center">
-                                <img className="md:w-[60px] " src="https://i.ibb.co/tJ909XV/23095971-1122-ai.png" alt="" />
-                                <h1 className="text-xl md:text-2xl lg:text-3xl  font-bold"><span className="text-[#84a793]">Bongo</span> Kids</h1>
+                                <img className="md:w-[60px] " src="https://i.ibb.co/2djgHS6/7114901-3536451-ai.png" alt="" />
+                                <h1 className="text-xl md:text-2xl lg:text-3xl  font-bold"><span className="text-[#84a793]">Meghna</span> Mall</h1>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ const Navbar = () => {
                         <div >
                             <div className="flex items-center">
                                 <img className="w-[80px] " src="https://i.ibb.co/tJ909XV/23095971-1122-ai.png" alt="" />
-                                <h1 className="text-xl md:text-3xl lg:text-3xl font-bold"><span className="text-[#84a793]">Bongo</span> Kids</h1>
+                                <h1 className="text-xl md:text-3xl lg:text-3xl font-bold"><span className="text-[#84a793]">Meghna</span> Mall</h1>
                             </div>
                         </div>
                     </div>
